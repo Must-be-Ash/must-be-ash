@@ -249,6 +249,25 @@ export function LinkInBioComponent() {
         <nav className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm z-50 px-4 py-3 md:hidden">
           <div className="flex justify-between items-center">
             <div className="flex gap-2">
+              <Link href="/home">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="hover:bg-[#4134a9] hover:text-white transition-colors duration-300"
+                  style={{ 
+                    width: '1.75rem',
+                    height: '1.75rem',
+                    padding: '1rem',
+                    ...(pathname === '/home' && {
+                      backgroundColor: '#4134a9',
+                      color: 'white'
+                    })
+                  }}
+                >
+                  <Home style={{ width: '1.5rem', height: '1.5rem' }} />
+                </Button>
+              </Link>
+
               <Link href="/">
                 <Button
                   variant="ghost"
@@ -259,25 +278,6 @@ export function LinkInBioComponent() {
                     height: '1.75rem',
                     padding: '1rem',
                     ...(pathname === '/' && {
-                      backgroundColor: '#4134a9',
-                      color: 'white'
-                    })
-                  }}
-                >
-                  <Home style={{ width: '1.5rem', height: '1.5rem' }} />
-                </Button>
-              </Link>
-
-              <Link href="/projects">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="hover:bg-[#4134a9] hover:text-white transition-colors duration-300"
-                  style={{ 
-                    width: '1.75rem',
-                    height: '1.75rem',
-                    padding: '1rem',
-                    ...(pathname === '/projects' && {
                       backgroundColor: '#4134a9',
                       color: 'white'
                     })
@@ -310,11 +310,11 @@ export function LinkInBioComponent() {
         {/* Desktop Navigation */}
         <div className="absolute right-4 top-4 hidden md:block">
           <Dock>
-            <Link href="/">
+            <Link href="/home">
               <DockIcon 
                 className={cn(
                   "backdrop-blur-sm p-3 rounded-full transition-colors",
-                  pathname === "/" 
+                  pathname === "/home" 
                     ? "bg-[#4134a9] text-white hover:bg-[#6b5dd3]"
                     : "bg-white/10 hover:bg-[#4134a9] hover:text-white"
                 )}
@@ -322,11 +322,11 @@ export function LinkInBioComponent() {
                 <Home className="h-8 w-8" />
               </DockIcon>
             </Link>
-            <Link href="/projects">
+            <Link href="/">
               <DockIcon 
                 className={cn(
                   "backdrop-blur-sm p-3 rounded-full transition-colors",
-                  pathname === "/projects"
+                  pathname === "/"
                     ? "bg-[#4134a9] text-white hover:bg-[#6b5dd3]"
                     : "bg-white/10 hover:bg-[#4134a9] hover:text-white"
                 )}
@@ -378,7 +378,7 @@ export function LinkInBioComponent() {
               in a week
             </h1>
             <div className="z-10 flex items-center justify-center">
-              <Link href="/">
+              <Link href="/home">
                 <AnimatedGradientText className="px-6 py-3 cursor-pointer rounded-full mt-2">
                   <span
                     className={cn(
