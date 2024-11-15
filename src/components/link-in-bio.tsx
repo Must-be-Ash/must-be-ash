@@ -14,6 +14,27 @@ import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { FaviconImage } from "@/components/ui/favicon-image";
 import { usePathname } from 'next/navigation'
 import { Dock, DockIcon } from "@/components/ui/dock"
+import { motion } from 'framer-motion'
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 }
+}
+
+const navFade = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 }
+}
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+}
 
 const personalInfo = {
   name: "must-be-ash",
@@ -246,7 +267,12 @@ export function LinkInBioComponent() {
       <div className="max-w-6xl mx-auto">
 
         {/* Mobile Navigation Bar */}
-        <nav className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm z-50 px-4 py-3 md:hidden">
+        <motion.nav 
+          initial="hidden"
+          animate="visible"
+          variants={navFade}
+          className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm z-50 px-4 py-3 md:hidden"
+        >
           <div className="flex justify-between items-center">
             <div className="flex gap-2">
               <Link href="/home">
@@ -305,10 +331,15 @@ export function LinkInBioComponent() {
               }
             </Button>
           </div>
-        </nav>
+        </motion.nav>
 
         {/* Desktop Navigation */}
-        <div className="absolute right-4 top-4 hidden md:block">
+        <motion.div 
+          initial="hidden"
+          animate="visible"
+          variants={navFade}
+          className="absolute right-4 top-4 hidden md:block"
+        >
           <Dock>
             <Link href="/home">
               <DockIcon 
@@ -341,35 +372,66 @@ export function LinkInBioComponent() {
               {isShared ? <Check className="h-8 w-8" /> : <Share className="h-8 w-8" />}
             </DockIcon>
           </Dock>
-        </div>
+        </motion.div>
 
         {/* Header Section */}
-        <header className="text-center mb-12 relative pt-20 md:pt-0">
-          <Image
-            src={personalInfo.image}
-            alt={personalInfo.name}
-            width={150}
-            height={150}
-            className="mx-auto rounded-full mb-4"
-          />
-          <h1 className="text-3xl font-bold mb-2">{personalInfo.name}</h1>
-          <p className="text-muted-foreground mb-4">{personalInfo.bio}</p>
+        <motion.header 
+          initial="hidden"
+          animate="visible"
+          variants={fadeInUp}
+          className="text-center mb-12 relative pt-20 md:pt-0"
+        >
+          <motion.div variants={fadeInUp}>
+            <Image
+              src={personalInfo.image}
+              alt={personalInfo.name}
+              width={150}
+              height={150}
+              className="mx-auto rounded-full mb-4"
+            />
+          </motion.div>
+          
+          <motion.h1 
+            variants={fadeInUp}
+            className="text-3xl font-bold mb-2"
+          >
+            {personalInfo.name}
+          </motion.h1>
+          
+          <motion.p 
+            variants={fadeInUp}
+            className="text-muted-foreground mb-4"
+          >
+            {personalInfo.bio}
+          </motion.p>
+
           {/* Social Icons */}
-          <div className="flex justify-center space-x-6 mb-8">
+          <motion.div 
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+            className="flex justify-center space-x-6 mb-8"
+          >
             {personalInfo.socials.map((social, index) => (
-              <Link key={index} href={social.url} target="_blank" rel="noopener noreferrer">
-                <Button 
-                  variant="ghost" 
-                  size="icon"
-                  className="hover:bg-[#4134a9] hover:text-white transition-colors duration-300 h-14 w-14"
-                >
-                  <social.icon style={{ width: '1.5rem', height: '1.5rem' }} />
-                  <span className="sr-only">{social.icon.name}</span>
-                </Button>
-              </Link>
+              <motion.div key={index} variants={fadeInUp}>
+                <Link key={index} href={social.url} target="_blank" rel="noopener noreferrer">
+                  <Button 
+                    variant="ghost" 
+                    size="icon"
+                    className="hover:bg-[#4134a9] hover:text-white transition-colors duration-300 h-14 w-14"
+                  >
+                    <social.icon style={{ width: '1.5rem', height: '1.5rem' }} />
+                    <span className="sr-only">{social.icon.name}</span>
+                  </Button>
+                </Link>
+              </motion.div>
             ))}
-          </div>
-          <div className="flex flex-col items-center justify-center max-w-2xl mx-auto text-[#222222]">
+          </motion.div>
+
+          <motion.div 
+            variants={fadeInUp}
+            className="flex flex-col items-center justify-center max-w-2xl mx-auto text-[#222222]"
+          >
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-center leading-[1.4]">
               Turn your{" "}
               <span className="bg-[#ffb520] px-4 py-1 rounded-md text-white">idea</span>{" "}
@@ -390,95 +452,104 @@ export function LinkInBioComponent() {
                 </AnimatedGradientText>
               </Link>
             </div>
-          </div>
-        </header>
+          </motion.div>
+        </motion.header>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div 
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
           {projects.map((project, index) => (
-            <Card 
-              key={index} 
-              className="flex flex-col overflow-hidden transition-all duration-300 hover:shadow-[0_20px_50px_rgba(8,_112,_184,_0.3)] relative transform hover:scale-105 group bg-white"
-              style={{
-                backdropFilter: 'blur(10px)',
-                WebkitBackdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255, 255, 255, 0.18)',
-                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)',
-                transition: 'all 0.3s ease-in-out',
-              }}
+            <motion.div 
+              key={index}
+              variants={fadeInUp}
             >
-              <div 
-                className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300" 
-                style={{ 
-                  backgroundColor: project.color,
+              <Card 
+                className="flex flex-col overflow-hidden transition-all duration-300 hover:shadow-[0_20px_50px_rgba(8,_112,_184,_0.3)] relative transform hover:scale-105 group bg-white"
+                style={{
+                  backdropFilter: 'blur(10px)',
+                  WebkitBackdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(255, 255, 255, 0.18)',
+                  boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)',
+                  transition: 'all 0.3s ease-in-out',
                 }}
-              />
-              <CardHeader className="relative z-10">
-                <FaviconImage
-                  url={project.site}
-                  alt={`${project.name} icon`}
-                  className="mb-4"
-                  fallbackIcon={project.icon}
+              >
+                <div 
+                  className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300" 
+                  style={{ 
+                    backgroundColor: project.color,
+                  }}
                 />
-                <CardTitle className="text-xl mb-2 text-black">{project.name}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex-grow relative z-10">
-                <CardDescription className="text-sm text-gray-600">{project.description}</CardDescription>
-              </CardContent>
-              <CardFooter className="flex justify-between items-center relative z-10">
-                <div className="flex gap-2">
-                  <Badge variant="secondary">{project.type}</Badge>
-                  <Badge 
-                    variant="outline" 
-                    className={`${
-                      project.status === 'Live' 
-                        ? 'bg-green-100 text-green-800' 
-                        : project.status === 'WIP'
-                        ? 'bg-yellow-100 text-yellow-800'
-                        : 'bg-red-100 text-red-800'
-                    }`}
-                  >
-                    {project.status}
-                  </Badge>
-                </div>
-                <div className="flex gap-2">
-                  <Button asChild variant="ghost" size="sm" className=" hover:bg-[#4134a9] hover:text-white">
-                    <Link href={project.site} target="_blank" rel="noopener noreferrer">
-                      <Globe className="h-4 w-4" />
-                      <span className="sr-only">Visit Site</span>
-                    </Link>
-                  </Button>
-                  {project.video && (
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button variant="ghost" size="sm">
-                          <Play className="h-4 w-4" />
-                          <span className="sr-only">Watch Demo</span>
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent>
-                        <DialogHeader>
-                          <DialogTitle>{project.name} Demo</DialogTitle>
-                          <DialogDescription>
-                            Watch a demonstration of {project.name} in action.
-                          </DialogDescription>
-                        </DialogHeader>
-                        <div className="aspect-video">
-                          <iframe
-                            src={project.video}
-                            title={`${project.name} demo video`}
-                            className="w-full h-full"
-                            allowFullScreen
-                          />
-                        </div>
-                      </DialogContent>
-                    </Dialog>
-                  )}
-                </div>
-              </CardFooter>
-            </Card>
+                <CardHeader className="relative z-10">
+                  <FaviconImage
+                    url={project.site}
+                    alt={`${project.name} icon`}
+                    className="mb-4"
+                    fallbackIcon={project.icon}
+                  />
+                  <CardTitle className="text-xl mb-2 text-black">{project.name}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow relative z-10">
+                  <CardDescription className="text-sm text-gray-600">{project.description}</CardDescription>
+                </CardContent>
+                <CardFooter className="flex justify-between items-center relative z-10">
+                  <div className="flex gap-2">
+                    <Badge variant="secondary">{project.type}</Badge>
+                    <Badge 
+                      variant="outline" 
+                      className={`${
+                        project.status === 'Live' 
+                          ? 'bg-green-100 text-green-800' 
+                          : project.status === 'WIP'
+                          ? 'bg-yellow-100 text-yellow-800'
+                          : 'bg-red-100 text-red-800'
+                      }`}
+                    >
+                      {project.status}
+                    </Badge>
+                  </div>
+                  <div className="flex gap-2">
+                    <Button asChild variant="ghost" size="sm" className=" hover:bg-[#4134a9] hover:text-white">
+                      <Link href={project.site} target="_blank" rel="noopener noreferrer">
+                        <Globe className="h-4 w-4" />
+                        <span className="sr-only">Visit Site</span>
+                      </Link>
+                    </Button>
+                    {project.video && (
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Button variant="ghost" size="sm">
+                            <Play className="h-4 w-4" />
+                            <span className="sr-only">Watch Demo</span>
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                          <DialogHeader>
+                            <DialogTitle>{project.name} Demo</DialogTitle>
+                            <DialogDescription>
+                              Watch a demonstration of {project.name} in action.
+                            </DialogDescription>
+                          </DialogHeader>
+                          <div className="aspect-video">
+                            <iframe
+                              src={project.video}
+                              title={`${project.name} demo video`}
+                              className="w-full h-full"
+                              allowFullScreen
+                            />
+                          </div>
+                        </DialogContent>
+                      </Dialog>
+                    )}
+                  </div>
+                </CardFooter>
+              </Card>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   )
