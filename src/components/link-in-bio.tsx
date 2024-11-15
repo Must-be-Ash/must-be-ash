@@ -447,7 +447,7 @@ export function LinkInBioComponent() {
                       `inline animate-gradient bg-gradient-to-r from-[#4134a9] via-[#6b5dd3] to-[#4134a9] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent text-lg font-medium`,
                     )}
                   >
-                    → Let&apos;s build
+                    → Build with me!
                   </span>
                 </AnimatedGradientText>
               </Link>
