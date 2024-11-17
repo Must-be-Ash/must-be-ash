@@ -359,14 +359,15 @@ export function LinkInBioComponent() {
           className="absolute right-4 top-4 hidden md:block"
         >
           <Dock>
-            <Link href="/home">
+            <Link href="/home" passHref>
               <DockIcon 
                 className={cn(
-                  "backdrop-blur-sm p-3 rounded-full transition-colors",
+                  "backdrop-blur-sm p-3 rounded-full transition-colors cursor-pointer",
                   pathname === "/home" 
                     ? "bg-[#4134a9] text-white hover:bg-[#6b5dd3]"
                     : "bg-white/10 hover:bg-[#4134a9] hover:text-white"
                 )}
+                style={{ pointerEvents: 'auto' }}
               >
                 <Home className="h-8 w-8" />
               </DockIcon>
