@@ -367,15 +367,10 @@ export function LinkInBioComponent() {
                     ? "bg-[#4134a9] text-white hover:bg-[#6b5dd3]"
                     : "bg-white/10 hover:bg-[#4134a9] hover:text-white"
                 )}
-                style={{ 
-                  padding: '1rem',
-                  ...(pathname === '/home' && {
-                    backgroundColor: '#4134a9',
-                    color: 'white'
-                  })
-                }}
               >
-                <Home className="h-8 w-8" />
+                <Link href="/home" className="w-full h-full block">
+                  <Home className="h-8 w-8" />
+                </Link>
               </DockIcon>
             </Link>
             <Link href="/">
