@@ -4,20 +4,27 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
-import { Github, Linkedin, Twitter, Mail, Share, Check, Home, FolderIcon } from 'lucide-react'
+import { Github, Linkedin, Twitter, Mail, Share, Check, Home, FolderIcon, Contact } from 'lucide-react'
 import { useToast } from "@/hooks/use-toast"
 import { Dock, DockIcon } from "@/components/ui/dock"
 import { motion } from 'framer-motion'
 
-// Add animation variants
+// Update these animation variants at the top of the file
 const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 }
-}
-
-const navFade = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 }
+  hidden: { 
+    opacity: 0, 
+    y: 60,  // Increased from 20 to 60
+    scale: 0.9  // Added scale effect
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.6,  // Increased duration
+      ease: [0.22, 1, 0.36, 1]  // Custom cubic-bezier for smoother motion
+    }
+  }
 }
 
 const staggerContainer = {
@@ -25,7 +32,24 @@ const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1
+      staggerChildren: 0.2,  // Increased from 0.1 to 0.2
+      delayChildren: 0.1,    // Added delay
+      ease: "easeOut"
+    }
+  }
+}
+
+const navFade = {
+  hidden: { 
+    opacity: 0,
+    y: -20   // Added slight downward fade
+  },
+  visible: { 
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
     }
   }
 }
@@ -43,6 +67,10 @@ const personalInfo = {
 }
 
 const TOTAL_PROJECTS = 17
+
+const scrollToFooter = () => {
+  document.getElementById('footer')?.scrollIntoView({ behavior: 'smooth' });
+}
 
 export default function BookingPage() {
   const [isShared, setIsShared] = useState(false)
@@ -118,6 +146,20 @@ export default function BookingPage() {
               </Button>
             </Link>
 
+            <Button
+              variant="ghost"
+              size="icon"
+              className="hover:bg-[#4134a9] hover:text-white transition-colors duration-300"
+              onClick={scrollToFooter}
+              style={{ 
+                width: '1.75rem',
+                height: '1.75rem',
+                padding: '1rem'
+              }}
+            >
+              <Contact style={{ width: '1.5rem', height: '1.5rem' }} />
+            </Button>
+
             </div>
 
             <Button
@@ -160,6 +202,12 @@ export default function BookingPage() {
             </Link>
             <DockIcon 
               className="bg-white/10 backdrop-blur-sm p-3 rounded-full hover:bg-[#4134a9] hover:text-white transition-colors cursor-pointer"
+              onClick={scrollToFooter}
+            >
+              <Contact className="h-8 w-8" />
+            </DockIcon>
+            <DockIcon 
+              className="bg-white/10 backdrop-blur-sm p-3 rounded-full hover:bg-[#4134a9] hover:text-white transition-colors cursor-pointer"
               onClick={handleShare}
             >
               {isShared ? <Check className="h-8 w-8" /> : <Share className="h-8 w-8" />}
@@ -171,7 +219,7 @@ export default function BookingPage() {
         <motion.header 
           initial="hidden"
           animate="visible"
-          variants={fadeInUp}
+          variants={staggerContainer}
           className="text-center mb-6 relative pt-20 md:pt-0"
         >
           <motion.div variants={fadeInUp}>
@@ -197,48 +245,29 @@ export default function BookingPage() {
           >
             {personalInfo.bio}
           </motion.p>
-
-          <motion.div 
-            variants={staggerContainer}
-            initial="hidden"
-            animate="visible"
-            className="flex justify-center space-x-6 mb-6"
-          >
-            {personalInfo.socials.map((social, index) => (
-              <motion.div key={index} variants={fadeInUp}>
-                <Link href={social.url} target="_blank" rel="noopener noreferrer">
-                  <Button 
-                    variant="ghost" 
-                    size="icon"
-                    className="hover:bg-[#4134a9] hover:text-white transition-colors duration-300 h-14 w-14"
-                  >
-                    <social.icon style={{ width: '1.5rem', height: '1.5rem' }} />
-                    <span className="sr-only">{social.icon.name}</span>
-                  </Button>
-                </Link>
-              </motion.div>
-            ))}
-          </motion.div>
         </motion.header>
 
         {/* Content Section */}
         <motion.div 
           initial="hidden"
           animate="visible"
-          variants={fadeInUp}
+          variants={staggerContainer}
           className="text-center mb-12"
         >
           <motion.div 
             variants={fadeInUp}
             className="flex flex-col gap-2 md:gap-3"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-center leading-[1.2] md:leading-[1.1]">
+            <motion.h2 
+              variants={fadeInUp}
+              className="text-3xl md:text-4xl font-bold text-center leading-[1.2] md:leading-[1.1]"
+            >
               Learn how to turn your
               <div className="mt-1 md:mt-1">ideas into products</div>
               <span className="bg-[#ffb520] px-4 py-1 rounded-md text-white mt-2 md:mt-3 inline-block">
                 without coding
               </span>
-            </h2>
+            </motion.h2>
           </motion.div>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto mt-8 mb-8 px-4">
             I&apos;ve built{" "}
@@ -344,6 +373,34 @@ export default function BookingPage() {
             </motion.div>
           ))}
         </motion.div>
+
+        <motion.footer 
+          id="footer"
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+          className="mt-20 pb-8 text-center"
+        >
+          <motion.div 
+            variants={fadeInUp}
+            className="flex justify-center space-x-6"
+          >
+            {personalInfo.socials.map((social, index) => (
+              <motion.div key={index} variants={fadeInUp}>
+                <Link href={social.url} target="_blank" rel="noopener noreferrer">
+                  <Button 
+                    variant="ghost" 
+                    size="icon"
+                    className="hover:bg-[#4134a9] hover:text-white transition-colors duration-300 h-14 w-14"
+                  >
+                    <social.icon style={{ width: '1.5rem', height: '1.5rem' }} />
+                    <span className="sr-only">{social.icon.name}</span>
+                  </Button>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.footer>
       </div>
     </div>
   )

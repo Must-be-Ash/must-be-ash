@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Github, Linkedin, Twitter, Mail, Play, Globe, Share, Check, Home, FolderIcon } from 'lucide-react'
+import { Github, Linkedin, Twitter, Mail, Play, Globe, Share, Check, Home, FolderIcon, Contact } from 'lucide-react'
 import { useToast } from "@/hooks/use-toast"
 import { cn } from "@/lib/utils";
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
@@ -231,6 +231,10 @@ const projects = [
   }
 ]
 
+const scrollToFooter = () => {
+  document.getElementById('footer')?.scrollIntoView({ behavior: 'smooth' });
+}
+
 export function LinkInBioComponent() {
   const [isShared, setIsShared] = useState(false)
   const { toast } = useToast()
@@ -312,6 +316,20 @@ export function LinkInBioComponent() {
                   <FolderIcon style={{ width: '1.5rem', height: '1.5rem' }} />
                 </Button>
               </Link>
+
+              <Button
+                variant="ghost"
+                size="icon"
+                className="hover:bg-[#4134a9] hover:text-white transition-colors duration-300"
+                onClick={scrollToFooter}
+                style={{ 
+                  width: '1.75rem',
+                  height: '1.75rem',
+                  padding: '1rem'
+                }}
+              >
+                <Contact style={{ width: '1.5rem', height: '1.5rem' }} />
+              </Button>
             </div>
 
             <Button
@@ -367,6 +385,12 @@ export function LinkInBioComponent() {
             </Link>
             <DockIcon 
               className="bg-white/10 backdrop-blur-sm p-3 rounded-full hover:bg-[#4134a9] hover:text-white transition-colors cursor-pointer"
+              onClick={scrollToFooter}
+            >
+              <Contact className="h-8 w-8" />
+            </DockIcon>
+            <DockIcon 
+              className="bg-white/10 backdrop-blur-sm p-3 rounded-full hover:bg-[#4134a9] hover:text-white transition-colors cursor-pointer"
               onClick={handleShare}
             >
               {isShared ? <Check className="h-8 w-8" /> : <Share className="h-8 w-8" />}
@@ -378,7 +402,7 @@ export function LinkInBioComponent() {
         <motion.header 
           initial="hidden"
           animate="visible"
-          variants={fadeInUp}
+          variants={staggerContainer}
           className="text-center mb-12 relative pt-20 md:pt-0"
         >
           <motion.div variants={fadeInUp}>
@@ -405,40 +429,20 @@ export function LinkInBioComponent() {
             {personalInfo.bio}
           </motion.p>
 
-          {/* Social Icons */}
-          <motion.div 
-            variants={staggerContainer}
-            initial="hidden"
-            animate="visible"
-            className="flex justify-center space-x-6 mb-8"
-          >
-            {personalInfo.socials.map((social, index) => (
-              <motion.div key={index} variants={fadeInUp}>
-                <Link key={index} href={social.url} target="_blank" rel="noopener noreferrer">
-                  <Button 
-                    variant="ghost" 
-                    size="icon"
-                    className="hover:bg-[#4134a9] hover:text-white transition-colors duration-300 h-14 w-14"
-                  >
-                    <social.icon style={{ width: '1.5rem', height: '1.5rem' }} />
-                    <span className="sr-only">{social.icon.name}</span>
-                  </Button>
-                </Link>
-              </motion.div>
-            ))}
-          </motion.div>
-
           <motion.div 
             variants={fadeInUp}
             className="flex flex-col items-center justify-center max-w-2xl mx-auto text-[#222222]"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-center leading-[1.4]">
+            <motion.h1 
+              variants={fadeInUp}
+              className="text-4xl md:text-5xl font-bold mb-6 text-center leading-[1.4]"
+            >
               Turn your{" "}
               <span className="bg-[#ffb520] px-4 py-1 rounded-md text-white">idea</span>{" "}
               into an <br className="hidden md:block"/>
               <span className="bg-[#ffb520] px-4 py-1 rounded-md mt-2 inline-block text-white">MVP</span>{" "}
               in a week
-            </h1>
+            </motion.h1>
             <div className="z-10 flex items-center justify-center">
               <Link href="/home">
                 <AnimatedGradientText className="px-6 py-3 cursor-pointer rounded-full mt-2">
@@ -550,6 +554,34 @@ export function LinkInBioComponent() {
             </motion.div>
           ))}
         </motion.div>
+
+        <motion.footer 
+          id="footer"
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+          className="mt-20 pb-8 text-center"
+        >
+          <motion.div 
+            variants={fadeInUp}
+            className="flex justify-center space-x-6"
+          >
+            {personalInfo.socials.map((social, index) => (
+              <motion.div key={index} variants={fadeInUp}>
+                <Link href={social.url} target="_blank" rel="noopener noreferrer">
+                  <Button 
+                    variant="ghost" 
+                    size="icon"
+                    className="hover:bg-[#4134a9] hover:text-white transition-colors duration-300 h-14 w-14"
+                  >
+                    <social.icon style={{ width: '1.5rem', height: '1.5rem' }} />
+                    <span className="sr-only">{social.icon.name}</span>
+                  </Button>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.footer>
       </div>
     </div>
   )
