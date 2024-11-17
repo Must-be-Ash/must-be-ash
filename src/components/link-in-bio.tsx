@@ -479,7 +479,7 @@ export function LinkInBioComponent() {
               variants={fadeInUp}
             >
               <Card 
-                className="flex flex-col overflow-hidden transition-all duration-300 hover:shadow-[0_20px_50px_rgba(8,_112,_184,_0.3)] relative transform hover:scale-105 group bg-white"
+                className="flex flex-col overflow-hidden transition-all duration-300 hover:shadow-[0_20px_50px_rgba(8,_112,_184,_0.3)] relative transform hover:scale-105 group bg-white h-[250px]"
                 style={{
                   backdropFilter: 'blur(10px)',
                   WebkitBackdropFilter: 'blur(10px)',
@@ -494,67 +494,72 @@ export function LinkInBioComponent() {
                     backgroundColor: project.color,
                   }}
                 />
-                <CardHeader className="relative z-10">
-                  <FaviconImage
-                    url={project.site}
-                    alt={`${project.name} icon`}
-                    className="mb-4"
-                    fallbackIcon={project.icon}
-                  />
-                  <CardTitle className="text-xl mb-2 text-black">{project.name}</CardTitle>
-                </CardHeader>
-                <CardContent className="flex-grow relative z-10">
-                  <CardDescription className="text-sm text-gray-600">{project.description}</CardDescription>
-                </CardContent>
-                <CardFooter className="flex justify-between items-center relative z-10">
-                  <div className="flex gap-2">
-                    <Badge variant="secondary">{project.type}</Badge>
-                    <Badge 
-                      variant="outline" 
-                      className={`${
-                        project.status === 'Live' 
-                          ? 'bg-green-100 text-green-800' 
-                          : project.status === 'WIP'
-                          ? 'bg-yellow-100 text-yellow-800'
-                          : 'bg-red-100 text-red-800'
-                      }`}
-                    >
-                      {project.status}
-                    </Badge>
+                <CardHeader className="relative z-10 pb-3">
+                  <div className="h-[40px] flex items-center mb-2">
+                    <FaviconImage
+                      url={project.site}
+                      alt={`${project.name} icon`}
+                      fallbackIcon={project.icon}
+                    />
                   </div>
-                  <div className="flex gap-2">
-                    <Button asChild variant="ghost" size="sm" className=" hover:bg-[#4134a9] hover:text-white">
-                      <Link href={project.site} target="_blank" rel="noopener noreferrer">
-                        <Globe className="h-4 w-4" />
-                        <span className="sr-only">Visit Site</span>
-                      </Link>
-                    </Button>
-                    {project.video && (
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <Button variant="ghost" size="sm">
-                            <Play className="h-4 w-4" />
-                            <span className="sr-only">Watch Demo</span>
-                          </Button>
-                        </DialogTrigger>
-                        <DialogContent>
-                          <DialogHeader>
-                            <DialogTitle>{project.name} Demo</DialogTitle>
-                            <DialogDescription>
-                              Watch a demonstration of {project.name} in action.
-                            </DialogDescription>
-                          </DialogHeader>
-                          <div className="aspect-video">
-                            <iframe
-                              src={project.video}
-                              title={`${project.name} demo video`}
-                              className="w-full h-full"
-                              allowFullScreen
-                            />
-                          </div>
-                        </DialogContent>
-                      </Dialog>
-                    )}
+                  <CardTitle className="text-xl text-black">{project.name}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow relative z-10 pb-3">
+                  <CardDescription className="text-sm text-gray-600 line-clamp-2">
+                    {project.description}
+                  </CardDescription>
+                </CardContent>
+                <CardFooter className="relative z-10 mt-auto">
+                  <div className="flex justify-between items-center w-full">
+                    <div className="flex gap-2">
+                      <Badge variant="secondary">{project.type}</Badge>
+                      <Badge 
+                        variant="outline" 
+                        className={`${
+                          project.status === 'Live' 
+                            ? 'bg-green-100 text-green-800' 
+                            : project.status === 'WIP'
+                            ? 'bg-yellow-100 text-yellow-800'
+                            : 'bg-red-100 text-red-800'
+                        }`}
+                      >
+                        {project.status}
+                      </Badge>
+                    </div>
+                    <div className="flex gap-2">
+                      <Button asChild variant="ghost" size="sm" className=" hover:bg-[#4134a9] hover:text-white">
+                        <Link href={project.site} target="_blank" rel="noopener noreferrer">
+                          <Globe className="h-4 w-4" />
+                          <span className="sr-only">Visit Site</span>
+                        </Link>
+                      </Button>
+                      {project.video && (
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <Button variant="ghost" size="sm">
+                              <Play className="h-4 w-4" />
+                              <span className="sr-only">Watch Demo</span>
+                            </Button>
+                          </DialogTrigger>
+                          <DialogContent>
+                            <DialogHeader>
+                              <DialogTitle>{project.name} Demo</DialogTitle>
+                              <DialogDescription>
+                                Watch a demonstration of {project.name} in action.
+                              </DialogDescription>
+                            </DialogHeader>
+                            <div className="aspect-video">
+                              <iframe
+                                src={project.video}
+                                title={`${project.name} demo video`}
+                                className="w-full h-full"
+                                allowFullScreen
+                              />
+                            </div>
+                          </DialogContent>
+                        </Dialog>
+                      )}
+                    </div>
                   </div>
                 </CardFooter>
               </Card>
