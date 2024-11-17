@@ -322,6 +322,7 @@ export default function BookingPage() {
               title: "Curious",
               price: "$120",
               duration: "/ 1hr",
+              description: "Let me show you how easy it is to create apps without needing to code, learn the basics and get over the intimidation of development.",
               features: ["Framework overview", "Best practices", "Tool recommendations"],
               link: "https://buy.stripe.com/cN2eUW4T23Kcbxm3cd"
             },
@@ -329,7 +330,8 @@ export default function BookingPage() {
               title: "Beginner",
               price: "$300",
               duration: "/ 3 lessons",
-              features: ["3 hours of guidance", "Hands-on development", "Project completion"],
+              description: "We will create your first application together. Will take up a mini project that you could execute within our sessions.",
+              features: ["3 hours of guidance", "Hands-on development", "Complete your first web application"],
               link: "https://buy.stripe.com/bIY00285e80scBqbIL",
               highlighted: true
             },
@@ -337,7 +339,8 @@ export default function BookingPage() {
               title: "Committed",
               price: "$1,750",
               duration: "/ week",
-              features: ["5 hours of mentoring", "5 dedicated lessons", "Guaranteed working product", "Full week of support"],
+              description: "Bring your idea to life. I'll personally see through that's your idea turns into reality by working on it outside of our class sessions.",
+              features: ["5 hours of mentoring", "Create a complete SaaS application", "Fully functional web app guaranteed"],
               link: "https://buy.stripe.com/28o002etCcgIcBq002"
             }
           ].map((tier, index) => (
@@ -350,7 +353,7 @@ export default function BookingPage() {
             >
               <div>
                 <h3 className="text-2xl font-bold mb-2">{tier.title}</h3>
-                <p className="text-gray-600 mb-4 h-24">{tier.features.join(", ")}</p>
+                <p className="text-gray-600 mb-4 min-h-[80px]">{tier.description}</p>
                 <div className="mb-6">
                   <span className="text-3xl font-bold">{tier.price}</span>
                   <span className="text-gray-500">{tier.duration}</span>
