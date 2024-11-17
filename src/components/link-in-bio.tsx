@@ -170,6 +170,16 @@ const projects = [
     icon: "/MB.png"
   },
   {
+    name: "ListFast",
+    description: "Submit your product to 100+ directories with one click",
+    site: "https://listfast.dev",
+    video: "",
+    status: "WIP",
+    type: "SaaS",
+    color: "#B4E7E6",
+    icon: "/lf.png"
+  },
+  {
     name: "Frens city",
     description: "aggregated web3 events",
     site: "https://www.frens.city/",
@@ -356,10 +366,10 @@ export function LinkInBioComponent() {
           initial="hidden"
           animate="visible"
           variants={navFade}
-          className="absolute right-4 top-4 hidden md:block"
+          className="absolute right-4 top-4 hidden md:block z-50"
         >
           <Dock>
-            <Link href="/home">
+            <div className="relative">
               <DockIcon 
                 className={cn(
                   "backdrop-blur-sm p-3 rounded-full transition-colors",
@@ -368,11 +378,19 @@ export function LinkInBioComponent() {
                     : "bg-white/10 hover:bg-[#4134a9] hover:text-white"
                 )}
               >
-                <Link href="/home" className="w-full h-full block">
-                  <Home className="h-8 w-8" />
-                </Link>
+                <Home className="h-8 w-8" />
               </DockIcon>
-            </Link>
+              <Link 
+                href="/home" 
+                className="absolute inset-0 z-10" 
+                aria-label="Home"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.location.href = '/home';
+                }}
+              />
+            </div>
+            
             <Link href="/">
               <DockIcon 
                 className={cn(
