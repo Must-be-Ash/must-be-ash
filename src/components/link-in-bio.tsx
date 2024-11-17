@@ -370,27 +370,14 @@ export function LinkInBioComponent() {
         >
           <Dock>
             <div className="relative">
-              <DockIcon 
-                className={cn(
-                  "backdrop-blur-sm p-3 rounded-full transition-colors",
-                  pathname === "/home" 
-                    ? "bg-[#4134a9] text-white hover:bg-[#6b5dd3]"
-                    : "bg-white/10 hover:bg-[#4134a9] hover:text-white"
-                )}
-              >
-                <Home className="h-8 w-8" />
-              </DockIcon>
-              <Link 
-                href="/home" 
-                className="absolute inset-0 z-10" 
-                aria-label="Home"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  window.location.href = '/home';
-                }}
-              />
+              <Link href="/home">
+                <DockIcon 
+                  className="bg-white/10 backdrop-blur-sm p-3 rounded-full hover:bg-[#4134a9] hover:text-white transition-colors cursor-pointer"
+                >
+                  <Home className="h-8 w-8" />
+                </DockIcon>
+              </Link>
             </div>
-            
             <Link href="/">
               <DockIcon 
                 className={cn(
