@@ -339,8 +339,8 @@ export default function BookingPage() {
               title: "Done for you",
               price: "$1,750",
               duration: "/ week",
-              description: "Bring your idea to life. I'll personally see through that's your idea turns into reality by working on it outside of our class sessions.",
-              features: ["3 hours of mentoring", "Create a complete SaaS application", "Fully functional web app guaranteed"],
+              description: "Get your idea built in a week! Skip the $30K+ agency quotes or unreliable fiverr gigs.",
+              features: ["Full week of development", "Direct communication", "Fully functional web app guaranteed"],
               link: "https://buy.stripe.com/28o002etCcgIcBq002"
             }
           ].map((tier, index) => (
