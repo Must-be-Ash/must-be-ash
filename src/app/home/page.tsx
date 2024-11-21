@@ -319,28 +319,28 @@ export default function BookingPage() {
           {/* Pricing tiers with staggered animation */}
           {[
             {
-              title: "Curious",
+              title: "Beginner",
               price: "$120",
               duration: "/ 1hr",
               description: "Let me show you how easy it is to create apps without needing to code, learn the basics and get over the intimidation of development.",
-              features: ["Framework overview", "Best practices", "Tool recommendations"],
+              features: ["Framework overview", "Best practices", "Tools introduction"],
               link: "https://buy.stripe.com/cN2eUW4T23Kcbxm3cd"
             },
             {
-              title: "Beginner",
+              title: "Learn to fish",
               price: "$300",
               duration: "/ 3 lessons",
-              description: "We will create your first application together. Will take up a mini project that you could execute within our sessions.",
+              description: "We will take up a mini project that you could execute within our sessions and create your first application together.",
               features: ["3 hours of guidance", "Hands-on development", "Complete your first web application"],
               link: "https://buy.stripe.com/bIY00285e80scBqbIL",
               highlighted: true
             },
             {
-              title: "Committed",
+              title: "Done for you",
               price: "$1,750",
               duration: "/ week",
               description: "Bring your idea to life. I'll personally see through that's your idea turns into reality by working on it outside of our class sessions.",
-              features: ["5 hours of mentoring", "Create a complete SaaS application", "Fully functional web app guaranteed"],
+              features: ["3 hours of mentoring", "Create a complete SaaS application", "Fully functional web app guaranteed"],
               link: "https://buy.stripe.com/28o002etCcgIcBq002"
             }
           ].map((tier, index) => (

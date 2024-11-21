@@ -1,0 +1,109 @@
+make my project cards reflect the project's branding by turning the cards into tinted transparent glass tiles that reflected the brand colors from my Meta tag and icon. Use the following project listed and leave the video URL empty for those that don't have one in the code and don't display the play button for project's that have empty video URLs. Use these projects:
+
+Name: AskDuckie
+Description: Google but for kids
+Site: https://askduckie.com
+Video:
+Status: Live
+Type: SaaS
+
+Name: KeyHub
+Description: Manage API keys & costs - first-ever API control centre
+Site: https://keyhub.live
+Video:
+
+Name: Quicknews
+Description: Stay up to date without getting stuck on social media
+Site: https://quicknews.pro
+Video:
+Status: WIP
+Type: SaaS
+
+Name: Little ones
+Description: Personalized stories to teach values
+Site: https://littleones.fun
+Video:
+Status: Live
+Type: SaaS
+
+Name: Vertical Saas Report
+Description: Find industry specific stats and opportunities
+Site: https://verticalsaas.report
+Video:
+Status: Live
+Type: SaaS
+
+Name: Legal gist
+Description: Get an idea of what you’re about to sign
+Site: https://legalgist.pro
+Video:
+Status: Live
+Type: Tool
+
+Name: Git2Site
+Description: Turn your repository into a link-in-bio
+Site: https://www.git2site.pro/
+Video:
+Status: WIP
+Type: Tool
+
+Name: Numnum
+Description: Pac-Man Trump parody
+Site: https://numnum.pro
+Video:
+Type: mini-game
+
+Name: Mindwiper
+Description: Wire Buzzer re-imagined
+Site: https://mindwiper.fun
+Video:
+Type: mini-game
+
+Name: Rhyme time
+Description: Sharpen your freestyling skills
+Site: https://www.rhymetime.live/
+Video:
+Status: Live
+Type: Tool
+
+Name: Fasting calculator
+Description: See how much weight you can lose by fasting
+Site: https://www.fasting-calculator.site/
+Video:
+Status: Live
+Type: Tool
+
+Name: markedBy
+Description: Turn your bookmark into a newsletter
+Site: https://www.markedby.me/
+Video: 
+Status: Deactivated
+Type: SaaS
+
+Name: Frens city
+Description: aggregated web3 events
+Site: https://www.frens.city/
+Video:
+Status: Deactivated
+Type: SaaS
+
+Name: Signed
+Description: First-ever authenticated digital autographs platform
+Site: https://signed.gg/
+Video:
+Status: Live
+Type: SaaS
+
+Name: Binder Studio
+Description: First-ever trust-less art commissioning platform
+Site: https://app.binder.studio/
+Video:
+Status: Live
+Type: SaaS
+
+Name: 99problems
+Description: Find problem spaces that could be solved with web3
+Site: https://www.99problems.xyz/
+Video:
+Status: Live
+Type: Tool
