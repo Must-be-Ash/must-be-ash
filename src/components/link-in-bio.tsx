@@ -64,7 +64,7 @@ const projects = [
     description: "Manage API keys & costs - first-ever API control centre",
     site: "https://keyhub.live",
     video: "https://www.youtube.com/embed/yblxn9KZS90?si=kbHl70Rp9cqnl0MR",
-    status: "Live",
+    status: "WIP",
     type: "SaaS",
     color: "#4CAF50",
     icon: "/keyhub.png"
@@ -214,7 +214,7 @@ const projects = [
     description: "NFTs put to work",
     site: "",
     video: "https://www.youtube.com/embed/KeErRJJX_3g?si=A7GvyD2FTzDeh7Ny",
-    status: "Live",
+    status: "Deactivated",
     type: "SaaS",
     color: "#009688",
     icon: "/grip.svg"
