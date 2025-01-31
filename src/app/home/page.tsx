@@ -4,10 +4,11 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
-import { Github, Linkedin, Twitter, Mail, Share, Check, Home, FolderIcon, Contact } from 'lucide-react'
+import { Github, Linkedin, Twitter, Mail, Share, Check, Home, FolderIcon, Contact, Clock } from 'lucide-react'
 import { useToast } from "@/hooks/use-toast"
 import { Dock, DockIcon } from "@/components/ui/dock"
 import { motion } from 'framer-motion'
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button"
 
 // Update these animation variants at the top of the file
 const fadeInUp = {
@@ -262,23 +263,23 @@ export default function BookingPage() {
               variants={fadeInUp}
               className="text-3xl md:text-4xl font-bold text-center leading-[1.2] md:leading-[1.1]"
             >
-              Learn how to turn your
-              <div className="mt-1 md:mt-1">ideas into products</div>
-              <span className="bg-[#ffb520] px-4 py-1 rounded-md text-white mt-2 md:mt-3 inline-block">
-                without coding
+              Skip the $30k+ agency quotes
+              <span className="bg-[#ffb520] px-4 py-1 rounded-md text-black mt-2 md:mt-3 inline-block">
+                Get your product to market in weeks
               </span>
             </motion.h2>
           </motion.div>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto mt-8 mb-8 px-4">
-            I&apos;ve built{" "}
+            I&apos;ve launched{" "}
             <Link 
               href="/" 
-              className="underline decoration-[#4134a9] hover:text-[#4134a9] transition-colors"
+              className="underline decoration-[#ffb520] hover:text-[#ffb520] transition-colors"
             >
-              {TOTAL_PROJECTS}+ functional products
+              {TOTAL_PROJECTS}+ successful products
             </Link>
-            {" "}with zero coding knowledge. And I only started in August 2024.
-            I can teach you how to turn your idea to working products.
+            {" "}since August 2024.
+            <br />
+            Let me help bring your idea to life.
           </p>
           <motion.div 
             variants={staggerContainer}
@@ -286,10 +287,9 @@ export default function BookingPage() {
           >
             {/* Feature items with staggered animation */}
             {[
-              { emoji: "✨", title: "Learn By Building", desc: "Skip theory, start creating real products" },
-              { emoji: "🎯", title: "Proven Track Record", desc: `${TOTAL_PROJECTS}+ projects built in less than a 4 months` },
-              { emoji: "⚡", title: "Rapid Development", desc: "From idea to MVP in just one week" },
-              { emoji: "🚀", title: "No-Code to Code", desc: "Learn the modern way to build software" }
+              { emoji: "⚡", title: "2-Week Delivery", desc: "Get your fully functional MVP in just two weeks" },
+              { emoji: "🤝", title: "Direct Partnership", desc: "Iterate together with unlimited revisions and direct communication" },
+              { emoji: "💰", title: "90% Cost Savings", desc: "Save $30k+ compared to traditional development agencies" }
             ].map((feature, index) => (
               <motion.div 
                 key={index}
@@ -304,9 +304,7 @@ export default function BookingPage() {
               </motion.div>
             ))}
           </motion.div>
-          <p className="text-sm text-gray-500 italic mb-8">
-            &ldquo;I started my coding journey in August 2024. Look at all these projects - you can do this too!&rdquo;
-          </p>
+
         </motion.div>
 
         {/* Pricing Section */}
@@ -314,67 +312,167 @@ export default function BookingPage() {
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4"
+          className="max-w-4xl mx-auto px-4"
         >
-          {/* Pricing tiers with staggered animation */}
-          {[
-            {
-              title: "Beginner",
-              price: "$120",
-              duration: "/ 1hr",
-              description: "Let me show you how easy it is to create apps without needing to code, learn the basics and get over the intimidation of development.",
-              features: ["Framework overview", "Best practices", "Tools introduction"],
-              link: "https://buy.stripe.com/cN2eUW4T23Kcbxm3cd"
-            },
-            {
-              title: "Learn to fish",
-              price: "$300",
-              duration: "/ 3 lessons",
-              description: "We will take up a mini project that you could execute within our sessions and create your first application together.",
-              features: ["3 hours of guidance", "Hands-on development", "Complete your first web application"],
-              link: "https://buy.stripe.com/bIY00285e80scBqbIL",
-              highlighted: true
-            },
-            {
-              title: "Done for you",
-              price: "$1,750",
-              duration: "/ week",
-              description: "Get your idea built in a week! Skip the $30K+ agency quotes or unreliable fiverr gigs.",
-              features: ["Full week of development", "Direct communication", "Fully functional web app guaranteed"],
-              link: "https://buy.stripe.com/28o002etCcgIcBq002"
-            }
-          ].map((tier, index) => (
-            <motion.div 
-              key={index}
-              variants={fadeInUp}
-              className={`flex flex-col h-full bg-white rounded-lg p-6 shadow-sm hover:shadow-lg transition-all duration-300 ${
-                tier.highlighted ? 'border-2 border-[#4134a9]' : ''
-              }`}
-            >
-              <div>
-                <h3 className="text-2xl font-bold mb-2">{tier.title}</h3>
-                <p className="text-gray-600 mb-4 min-h-[80px]">{tier.description}</p>
-                <div className="mb-6">
-                  <span className="text-3xl font-bold">{tier.price}</span>
-                  <span className="text-gray-500">{tier.duration}</span>
+          {/* Original Pricing Grid (Commented Out)
+          <motion.div 
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4"
+          >
+            {[
+              {
+                title: "Beginner",
+                price: "$120",
+                duration: "/ 1hr",
+                description: "Let me show you how easy it is to create apps without needing to code, learn the basics and get over the intimidation of development.",
+                features: ["Framework overview", "Best practices", "Tools introduction"],
+                link: "https://buy.stripe.com/cN2eUW4T23Kcbxm3cd"
+              },
+              {
+                title: "Learn to fish",
+                price: "$300",
+                duration: "/ 3 lessons",
+                description: "We will take up a mini project that you could execute within our sessions and create your first application together.",
+                features: ["3 hours of guidance", "Hands-on development", "Complete your first web application"],
+                link: "https://buy.stripe.com/bIY00285e80scBqbIL",
+                highlighted: true
+              },
+              {
+                title: "Done for you",
+                price: "$1,750",
+                duration: "/ week",
+                description: "Get your idea built in a week! Skip the $30K+ agency quotes or unreliable fiverr gigs.",
+                features: ["Full week of development", "Direct communication", "Fully functional web app guaranteed"],
+                link: "https://buy.stripe.com/28o002etCcgIcBq002"
+              }
+            ].map((tier, index) => (
+              <motion.div 
+                key={index}
+                variants={fadeInUp}
+                className={`flex flex-col h-full bg-white rounded-lg p-6 shadow-sm hover:shadow-lg transition-all duration-300 ${
+                  tier.highlighted ? 'border-2 border-[#4134a9]' : ''
+                }`}
+              >
+                <div>
+                  <h3 className="text-2xl font-bold mb-2">{tier.title}</h3>
+                  <p className="text-gray-600 mb-4 min-h-[80px]">{tier.description}</p>
+                  <div className="mb-6">
+                    <span className="text-3xl font-bold">{tier.price}</span>
+                    <span className="text-gray-500">{tier.duration}</span>
+                  </div>
+                  <ul className="text-gray-600 mb-6 space-y-2">
+                    {tier.features.map((feature, index) => (
+                      <li key={index} className="flex items-center">
+                        <span className="mr-2">✓</span> {feature}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <ul className="text-gray-600 mb-6 space-y-2">
-                  {tier.features.map((feature, index) => (
-                    <li key={index} className="flex items-center">
-                      <span className="mr-2">✓</span> {feature}
-                    </li>
-                  ))}
-                </ul>
+                <div className="mt-auto">
+                  <Link href={tier.link}>
+                    <Button className="w-full bg-[#4134a9] text-white hover:bg-[#6b5dd3]">
+                      Let&apos;s Build
+                    </Button>
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+          */}
+
+          {/* New MVP Building Section */}
+          <motion.div
+            variants={fadeInUp}
+            className="px-4 sm:px-6 lg:px-8 py-4 sm:py-2"
+          >
+            <div className="relative mx-auto max-w-5xl">
+              <div className="w-full overflow-hidden rounded-2xl bg-[#1a1a1a] p-8 sm:p-12 lg:p-16">
+                <div className="relative z-10">
+                  <div className="flex flex-col items-center justify-center space-y-4">
+                    <span className="inline-flex items-center rounded-full bg-[#ffb520]/10 px-4 py-1.5 text-sm font-medium text-[#ffb520]">
+                      Ready to build something amazing?
+                    </span>
+                    <h2 className="max-w-3xl bg-gradient-to-br from-[#ffb520] via-[#FFFFFF] to-[#ffb520] bg-clip-text text-center text-4xl font-bold text-transparent sm:text-5xl md:text-6xl">
+                      Transform Your Ideas Into Reality
+                    </h2>
+                  </div>
+
+                  <div className="mt-12 grid gap-8 md:grid-cols-2">
+                    {/* Left Column */}
+                    <div className="space-y-6">
+                      <p className="text-lg text-gray-300 sm:text-xl">
+                        Skip the expensive agencies and long development cycles. I&apos;ll help you transform your idea into a working product in record time, leveraging the power of modern no-code tools and my proven development process.
+                      </p>
+                      
+                      <div className="space-y-4">
+                        <div className="flex items-start gap-4 rounded-xl bg-[#222222] p-4 shadow-sm">
+                          <div className="flex-shrink-0">
+                            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#ffb520]">
+                              <Check className="h-4 w-4 text-black" />
+                            </span>
+                          </div>
+                          <div>
+                            <h3 className="font-semibold text-white">2-Week Delivery</h3>
+                            <p className="text-gray-400">Get your fully functional MVP in just two weeks</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-4 rounded-xl bg-[#222222] p-4 shadow-sm">
+                          <div className="flex-shrink-0">
+                            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#ffb520]">
+                              <Check className="h-4 w-4 text-black" />
+                            </span>
+                          </div>
+                          <div>
+                            <h3 className="font-semibold text-white">Direct Partnership</h3>
+                            <p className="text-gray-400">Iterate together with unlimited revisions and direct communication</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-4 rounded-xl bg-[#222222] p-4 shadow-sm">
+                          <div className="flex-shrink-0">
+                            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#ffb520]">
+                              <Check className="h-4 w-4 text-black" />
+                            </span>
+                          </div>
+                          <div>
+                            <h3 className="font-semibold text-white">90% Cost Savings</h3>
+                            <p className="text-gray-400">Save $30k+ compared to traditional development agencies</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Right Column */}
+                    <div className="flex flex-col items-center justify-center space-y-6 rounded-2xl bg-[#222222] p-8">
+                      <div className="text-center">
+                        <h3 className="text-2xl font-bold text-white">Book a Discovery Call</h3>
+                        <p className="mt-2 text-gray-400">Let&apos;s discuss your project and explore how we can bring it to life</p>
+                      </div>
+
+                      <Link 
+                        href="https://cal.com/must-be-ash/15min" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="w-full"
+                      >
+                        <InteractiveHoverButton 
+                          className="w-full border-[#ffb520] bg-[#ffb520] py-6 text-lg font-semibold text-black hover:text-[#ffb520]"
+                        >
+                          Schedule Free Call
+                        </InteractiveHoverButton>
+                      </Link>
+
+                      <div className="flex items-center justify-center gap-2 text-sm text-gray-400">
+                        <Clock className="h-4 w-4" />
+                        <span>15 minutes · No commitment required</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="mt-auto">
-                <Link href={tier.link}>
-                  <Button className="w-full bg-[#4134a9] text-white hover:bg-[#6b5dd3]">
-                    Let&apos;s Build
-                  </Button>
-                </Link>
-              </div>
-            </motion.div>
-          ))}
+            </div>
+          </motion.div>
         </motion.div>
 
         <motion.footer 
