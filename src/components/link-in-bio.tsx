@@ -15,6 +15,7 @@ import { FaviconImage } from "@/components/ui/favicon-image";
 import { usePathname } from 'next/navigation'
 import { Dock, DockIcon } from "@/components/ui/dock"
 import { motion } from 'framer-motion'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -50,6 +51,96 @@ const personalInfo = {
 
 const projects = [
   {
+    name: "NVG8 Learn",
+    description: "See what data you're giving to big corps",
+    site: "https://learn.nvg8.io/",
+    video: "",
+    status: "Live",
+    type: "Tool",
+    color: "#4134a9",
+    icon: "/nvg8.png"
+  },
+  {
+    name: "NVG8 Token",
+    description: "Interactive tokenomics dashboard",
+    site: "https://token.nvg8.io/",
+    video: "",
+    status: "Live",
+    type: "Site",
+    color: "#4134a9",
+    icon: "/nvg8.png"
+  },
+  {
+    name: "NVG8 LinkTree",
+    description: "Custom link tree website",
+    site: "https://token.nvg8.io/links",
+    video: "",
+    status: "Live",
+    type: "Site",
+    color: "#4134a9",
+    icon: "/nvg8.png"
+  },
+  {
+    name: "NVG8 Chrome",
+    description: "Chrome extension site",
+    site: "https://nvg-browser.vercel.app/",
+    video: "",
+    status: "Live",
+    type: "Site",
+    color: "#4134a9",
+    icon: "/nvg8.png"
+  },
+  {
+    name: "NVG8 Rewards",
+    description: "User onboarding through mini games and giveaways",
+    site: "https://rewards.nvg8.io/",
+    video: "https://screen.studio/share/hruVRLVx",
+    status: "Deactivated",
+    type: "mini-game",
+    color: "#4134a9",
+    icon: "/nvg8.png"
+  },
+  {
+    name: "Keepy Uppy",
+    description: "A mini game that got #3 product of the day on product hunt",
+    site: "https://keepy-uppy.vercel.app/",
+    video: "",
+    status: "Live",
+    type: "mini-game",
+    color: "#FFC107",
+    icon: "/kp.png"
+  },
+  {
+    name: "Sands of Chaos",
+    description: "Website designed for a game",
+    site: "https://sands-of-chaos.vercel.app/",
+    video: "",
+    status: "Deactivated",
+    type: "Site",
+    color: "#795548",
+    icon: "/soc.png"
+  },
+  {
+    name: "GitWrap",
+    description: "Spotify wrapped but GitHub",
+    site: "https://www.gitwrap.dev/",
+    video: "https://screen.studio/share/BVrv32W0",
+    status: "Live",
+    type: "Tool",
+    color: "#673AB7",
+    icon: "/gw.png"
+  },
+  {
+    name: "Ramen Money",
+    description: "A simple calculator to help you find out how many customers you need to become ramen profitable",
+    site: "https://ramen-money.vercel.app/",
+    video: "",
+    status: "Live",
+    type: "Tool",
+    color: "#FF5722",
+    icon: "/rm.png"
+  },
+  {
     name: "AskDuckie",
     description: "Google but for kids",
     site: "https://askduckie.com",
@@ -64,7 +155,7 @@ const projects = [
     description: "Manage API keys & costs - first-ever API control centre",
     site: "https://keyhub.live",
     video: "https://www.youtube.com/embed/yblxn9KZS90?si=kbHl70Rp9cqnl0MR",
-    status: "WIP",
+    status: "Deactivated",
     type: "SaaS",
     color: "#4CAF50",
     icon: "/keyhub.png"
@@ -74,10 +165,10 @@ const projects = [
     description: "Stay up to date without getting stuck on social media",
     site: "https://quicknews.pro",
     video: "",
-    status: "WIP",
+    status: "Deactivated",
     type: "SaaS",
     color: "#A5E887",
-    icon: "/placeholder.svg?height=40&width=40"
+    icon: "/qn.png"
   },
   {
     name: "Little ones",
@@ -87,17 +178,17 @@ const projects = [
     status: "Live",
     type: "SaaS",
     color: "#F59E0B",
-    icon: "/placeholder.svg?height=40&width=40"
+    icon: "/lil.png"
   },
   {
-    name: "Vertical Saas Report",
+    name: "Vertical Saas Group",
     description: "Find industry specific stats and opportunities",
-    site: "https://verticalsaas.report",
-    video: "",
+    site: "https://verticalsaasgroup.com",
+    video: "https://www.loom.com/share/0ae0e6a0afd64d948b32f567bf7c3b59",
     status: "Live",
     type: "SaaS",
     color: "#4A1D96",
-    icon: "/placeholder.svg?height=40&width=40"
+    icon: "/logo-blk.png"
   },
   {
     name: "Legal gist",
@@ -107,7 +198,7 @@ const projects = [
     status: "Live",
     type: "Tool",
     color: "#607D8B",
-    icon: "/placeholder.svg?height=40&width=40"
+    icon: "/lg.png"
   },
   {
     name: "Git2Site",
@@ -127,7 +218,7 @@ const projects = [
     status: "Live",
     type: "mini-game",
     color: "#FFC107",
-    icon: "/placeholder.svg?height=40&width=40"
+    icon: "/num.png"
   },
   {
     name: "Mindwiper",
@@ -137,7 +228,7 @@ const projects = [
     status: "Live",
     type: "mini-game",
     color: "#E91E63",
-    icon: "/placeholder.svg?height=40&width=40"
+    icon: "/mindwiper.png"
   },
   {
     name: "Rhyme time",
@@ -247,8 +338,21 @@ const scrollToFooter = () => {
 
 export function LinkInBioComponent() {
   const [isShared, setIsShared] = useState(false)
+  const [selectedType, setSelectedType] = useState<string | null>(null)
+  const [selectedStatus, setSelectedStatus] = useState<string | null>(null)
   const { toast } = useToast()
   const pathname = usePathname()
+
+  // Get unique types and statuses
+  const types = Array.from(new Set(projects.map(project => project.type)))
+  const statuses = Array.from(new Set(projects.map(project => project.status)))
+
+  // Filter projects based on selected filters
+  const filteredProjects = projects.filter(project => {
+    const typeMatch = !selectedType || project.type === selectedType
+    const statusMatch = !selectedStatus || project.status === selectedStatus
+    return typeMatch && statusMatch
+  })
 
   useEffect(() => {
     if (isShared) {
@@ -466,14 +570,103 @@ export function LinkInBioComponent() {
           </motion.div>
         </motion.header>
 
-        {/* Projects Grid */}
+        {/* Filter Section */}
+        <motion.div 
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+          className="mb-8"
+        >
+          {/* Desktop Filters */}
+          <div className="hidden sm:flex sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-wrap gap-2">
+              <Button
+                variant={selectedType === null ? "default" : "outline"}
+                onClick={() => setSelectedType(null)}
+                className="text-sm"
+              >
+                All Types
+              </Button>
+              {types.map((type) => (
+                <Button
+                  key={type}
+                  variant={selectedType === type ? "default" : "outline"}
+                  onClick={() => setSelectedType(type === selectedType ? null : type)}
+                  className="text-sm"
+                >
+                  {type}
+                </Button>
+              ))}
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <Button
+                variant={selectedStatus === null ? "default" : "outline"}
+                onClick={() => setSelectedStatus(null)}
+                className="text-sm"
+              >
+                All Status
+              </Button>
+              {statuses.map((status) => (
+                <Button
+                  key={status}
+                  variant={selectedStatus === status ? "default" : "outline"}
+                  onClick={() => setSelectedStatus(status === selectedStatus ? null : status)}
+                  className="text-sm"
+                >
+                  {status}
+                </Button>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile Filters */}
+          <div className="flex sm:hidden flex-col gap-4 relative z-50">
+            <div className="grid grid-cols-2 gap-4">
+              <Select
+                value={selectedType || "all"}
+                onValueChange={(value: string) => setSelectedType(value === "all" ? null : value)}
+              >
+                <SelectTrigger className="w-full bg-white">
+                  <SelectValue placeholder="Filter by Type" />
+                </SelectTrigger>
+                <SelectContent className="bg-white z-[100]">
+                  <SelectItem value="all">All Types</SelectItem>
+                  {types.map((type) => (
+                    <SelectItem key={type} value={type}>
+                      {type}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+
+              <Select
+                value={selectedStatus || "all"}
+                onValueChange={(value: string) => setSelectedStatus(value === "all" ? null : value)}
+              >
+                <SelectTrigger className="w-full bg-white">
+                  <SelectValue placeholder="Filter by Status" />
+                </SelectTrigger>
+                <SelectContent className="bg-white z-[100]">
+                  <SelectItem value="all">All Status</SelectItem>
+                  {statuses.map((status) => (
+                    <SelectItem key={status} value={status}>
+                      {status}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Projects Grid - Update to use filteredProjects */}
         <motion.div 
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {projects.map((project, index) => (
+          {filteredProjects.map((project, index) => (
             <motion.div 
               key={index}
               variants={fadeInUp}

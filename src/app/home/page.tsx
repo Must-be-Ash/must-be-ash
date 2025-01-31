@@ -104,7 +104,7 @@ export default function BookingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f8f8f8] py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#f8f8f8] py-8 px-0 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         {/* Mobile Navigation Bar */}
         <motion.nav 
@@ -385,28 +385,28 @@ export default function BookingPage() {
           {/* New MVP Building Section */}
           <motion.div
             variants={fadeInUp}
-            className="px-4 sm:px-6 lg:px-8 py-4 sm:py-2"
+            className="px-0 sm:px-6 lg:px-8 py-4 sm:py-2"
           >
             <div className="relative mx-auto max-w-5xl">
-              <div className="w-full overflow-hidden rounded-2xl bg-[#1a1a1a] p-8 sm:p-12 lg:p-16">
+              <div className="w-full overflow-hidden rounded-2xl bg-[#1a1a1a] p-4 sm:p-12 lg:p-16">
                 <div className="relative z-10">
                   <div className="flex flex-col items-center justify-center space-y-4">
                     <span className="inline-flex items-center rounded-full bg-[#ffb520]/10 px-4 py-1.5 text-sm font-medium text-[#ffb520]">
                       Ready to build something amazing?
                     </span>
-                    <h2 className="max-w-3xl bg-gradient-to-br from-[#ffb520] via-[#FFFFFF] to-[#ffb520] bg-clip-text text-center text-4xl font-bold text-transparent sm:text-5xl md:text-6xl">
+                    <h2 className="max-w-3xl bg-gradient-to-br from-[#ffb520] via-[#FFFFFF] to-[#ffb520] bg-clip-text text-center text-3xl sm:text-5xl md:text-6xl font-bold text-transparent">
                       Transform Your Ideas Into Reality
                     </h2>
                   </div>
 
-                  <div className="mt-12 grid gap-8 md:grid-cols-2">
+                  <div className="mt-8 sm:mt-12 grid gap-4 sm:gap-8 md:grid-cols-2">
                     {/* Left Column */}
-                    <div className="space-y-6">
-                      <p className="text-lg text-gray-300 sm:text-xl">
+                    <div className="space-y-3 sm:space-y-6">
+                      <p className="text-base sm:text-lg text-gray-300 sm:text-xl">
                         Skip the expensive agencies and long development cycles. I&apos;ll help you transform your idea into a working product in record time, leveraging the power of modern no-code tools and my proven development process.
                       </p>
                       
-                      <div className="space-y-4">
+                      <div className="space-y-2 sm:space-y-4">
                         <div className="flex items-start gap-4 rounded-xl bg-[#222222] p-4 shadow-sm">
                           <div className="flex-shrink-0">
                             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#ffb520]">
@@ -443,29 +443,22 @@ export default function BookingPage() {
                       </div>
                     </div>
 
-                    {/* Right Column */}
-                    <div className="flex flex-col items-center justify-center space-y-6 rounded-2xl bg-[#222222] p-8">
-                      <div className="text-center">
-                        <h3 className="text-2xl font-bold text-white">Book a Discovery Call</h3>
-                        <p className="mt-2 text-gray-400">Let&apos;s discuss your project and explore how we can bring it to life</p>
-                      </div>
-
-                      <Link 
-                        href="https://cal.com/must-be-ash/15min" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="w-full"
-                      >
-                        <InteractiveHoverButton 
-                          className="w-full border-[#ffb520] bg-[#ffb520] py-6 text-lg font-semibold text-black hover:text-[#ffb520]"
-                        >
-                          Schedule Free Call
-                        </InteractiveHoverButton>
-                      </Link>
-
-                      <div className="flex items-center justify-center gap-2 text-sm text-gray-400">
-                        <Clock className="h-4 w-4" />
-                        <span>15 minutes · No commitment required</span>
+                    {/* Right Column - Mobile Optimized */}
+                    <div className="flex flex-col items-center justify-center w-full h-full bg-[#222222] rounded-xl sm:rounded-2xl p-6 sm:p-8">
+                      <div className="flex flex-col items-center justify-center w-full">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-white text-center mb-3 sm:mb-4">Book a Discovery Call</h2>
+                        <p className="text-base sm:text-lg text-gray-400 text-center mb-6 sm:mb-8">Let&apos;s discuss your project and explore how we can bring it to life</p>
+                        <Link href="https://cal.com/ash-nouruzi/discovery" target="_blank" className="w-full sm:w-auto">
+                          <InteractiveHoverButton
+                            className="w-full border-[#ffb520] bg-[#ffb520] py-4 sm:py-6 text-base sm:text-lg font-semibold text-black hover:text-[#ffb520]"
+                          >
+                            Schedule Free Call
+                          </InteractiveHoverButton>
+                        </Link>
+                        <div className="flex items-center gap-2 mt-4 sm:mt-6">
+                          <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+                          <p className="text-sm sm:text-base text-gray-400">15 minutes · No commitment required</p>
+                        </div>
                       </div>
                     </div>
                   </div>
