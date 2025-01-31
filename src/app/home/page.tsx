@@ -402,7 +402,7 @@ export default function BookingPage() {
                   <div className="mt-8 sm:mt-12 grid gap-4 sm:gap-8 md:grid-cols-2">
                     {/* Left Column */}
                     <div className="space-y-3 sm:space-y-6">
-                      <p className="text-base sm:text-lg text-gray-300 sm:text-xl">
+                      <p className="text-base sm:text-lg text-gray-300">
                         Skip the expensive agencies and long development cycles. I&apos;ll help you transform your idea into a working product in record time, leveraging the power of modern no-code tools and my proven development process.
                       </p>
                       
