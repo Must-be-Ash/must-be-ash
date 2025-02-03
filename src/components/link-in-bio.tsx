@@ -51,6 +51,16 @@ const personalInfo = {
 
 const projects = [
   {
+    name: "Peer Pressure",
+    description: "Public shaming app to help you commit to gym days",
+    site: "https://www.peerpressure.pro/",
+    video: "https://youtu.be/k2JxITHkqYE",
+    status: "Live",
+    type: "SaaS",
+    color: "#6b5dd3",
+    icon: "/pp.png"
+  },
+  {
     name: "NVG8 Learn",
     description: "See what data you're giving to big corps",
     site: "https://learn.nvg8.io/",
