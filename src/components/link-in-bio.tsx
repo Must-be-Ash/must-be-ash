@@ -50,6 +50,16 @@ const personalInfo = {
 }
 
 const projects = [
+{
+  name: "Based List",
+  description: "A directory of people & projects on Base",
+  site: "https://www.basedlist.dev/",
+  video: "",
+  status: "Live",
+  type: "SaaS",
+  color: "#6b2323",
+  icon: "/bl.png"
+},
   {
     name: "Peer Pressure",
     description: "Public shaming app to help you commit to gym days",
@@ -288,7 +298,7 @@ const projects = [
     status: "Deactivated",
     type: "SaaS",
     color: "#8BC34A",
-    icon: "/placeholder.svg?height=40&width=40"
+    icon: "/fc.png"
   },
   {
     name: "Signed",
@@ -305,7 +315,7 @@ const projects = [
     description: "First-ever trust-less art commissioning platform",
     site: "https://app.binder.studio/",
     video: "https://www.youtube.com/embed/txHLI6Tikhk?si=lnU7m5w2Fs8lcXYW",
-    status: "Live",
+    status: "Deactivated",
     type: "SaaS",
     color: "#009688",
     icon: "/bs.svg"
@@ -325,10 +335,10 @@ const projects = [
     description: "Find problem spaces that could be solved with web3",
     site: "https://www.99problems.xyz/",
     video: "",
-    status: "Live",
+    status: "Deactivated",
     type: "Tool",
     color: "#FF4081",
-    icon: "/placeholder.svg?height=40&width=40"
+    icon: "/99p.png"
   },
   {
     name: "Garry run",
