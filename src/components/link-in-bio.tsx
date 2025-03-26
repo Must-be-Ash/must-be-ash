@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Github, Linkedin, Twitter, Mail, Play, Globe, Share, Check, Home, FolderIcon, Contact } from 'lucide-react'
+import { Github, Linkedin, Twitter, Mail, Play, Globe, Share, Check, Home, FolderIcon, Contact, FileText } from 'lucide-react'
 import { useToast } from "@/hooks/use-toast"
 import { cn } from "@/lib/utils";
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
@@ -54,7 +54,7 @@ const projects = [
   name: "Based List",
   description: "A directory of people & projects on Base",
   site: "https://www.basedlist.dev/",
-  video: "",
+  video: "https://x.com/i/status/1899224091837804550",
   status: "Live",
   type: "SaaS",
   color: "#6b2323",
@@ -451,6 +451,25 @@ export function LinkInBioComponent() {
                 </Button>
               </Link>
 
+              <Link href="/cv">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="hover:bg-[#4134a9] hover:text-white transition-colors duration-300"
+                  style={{ 
+                    width: '1.75rem',
+                    height: '1.75rem',
+                    padding: '1rem',
+                    ...(pathname === '/cv' && {
+                      backgroundColor: '#4134a9',
+                      color: 'white'
+                    })
+                  }}
+                >
+                  <FileText style={{ width: '1.5rem', height: '1.5rem' }} />
+                </Button>
+              </Link>
+
               <Button
                 variant="ghost"
                 size="icon"
@@ -512,6 +531,18 @@ export function LinkInBioComponent() {
                 )}
               >
                 <FolderIcon className="h-8 w-8" />
+              </DockIcon>
+            </Link>
+            <Link href="/cv">
+              <DockIcon 
+                className={cn(
+                  "backdrop-blur-sm p-3 rounded-full transition-colors",
+                  pathname === "/cv"
+                    ? "bg-[#4134a9] text-white hover:bg-[#6b5dd3]"
+                    : "bg-white/10 hover:bg-[#4134a9] hover:text-white"
+                )}
+              >
+                <FileText className="h-8 w-8" />
               </DockIcon>
             </Link>
             <DockIcon 

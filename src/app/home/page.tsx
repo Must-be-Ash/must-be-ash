@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
-import { Github, Linkedin, Twitter, Mail, Share, Check, Home, FolderIcon, Contact, Clock } from 'lucide-react'
+import { Github, Linkedin, Twitter, Mail, Share, Check, Home, FolderIcon, Contact, Clock, FileText } from 'lucide-react'
 import { useToast } from "@/hooks/use-toast"
 import { Dock, DockIcon } from "@/components/ui/dock"
 import { motion } from 'framer-motion'
@@ -147,6 +147,21 @@ export default function BookingPage() {
               </Button>
             </Link>
 
+            <Link href="/cv">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="hover:bg-[#4134a9] hover:text-white transition-colors duration-300"
+                style={{ 
+                  width: '1.75rem',
+                  height: '1.75rem',
+                  padding: '1rem'
+                }}
+              >
+                <FileText style={{ width: '1.5rem', height: '1.5rem' }} />
+              </Button>
+            </Link>
+
             <Button
               variant="ghost"
               size="icon"
@@ -199,6 +214,11 @@ export default function BookingPage() {
             <Link href="/">
               <DockIcon className="bg-white/10 backdrop-blur-sm p-3 rounded-full hover:bg-[#4134a9] hover:text-white transition-colors">
                 <FolderIcon className="h-8 w-8" />
+              </DockIcon>
+            </Link>
+            <Link href="/cv">
+              <DockIcon className="bg-white/10 backdrop-blur-sm p-3 rounded-full hover:bg-[#4134a9] hover:text-white transition-colors">
+                <FileText className="h-8 w-8" />
               </DockIcon>
             </Link>
             <DockIcon 
@@ -275,7 +295,7 @@ export default function BookingPage() {
               href="/" 
               className="underline decoration-[#ffb520] hover:text-[#ffb520] transition-colors"
             >
-              {TOTAL_PROJECTS}+ successful products
+              {TOTAL_PROJECTS}+ products
             </Link>
             {" "}since August 2024.
             <br />
@@ -448,7 +468,7 @@ export default function BookingPage() {
                       <div className="flex flex-col items-center justify-center w-full">
                         <h2 className="text-2xl sm:text-3xl font-bold text-white text-center mb-3 sm:mb-4">Book a Discovery Call</h2>
                         <p className="text-base sm:text-lg text-gray-400 text-center mb-6 sm:mb-8">Let&apos;s discuss your project and explore how we can bring it to life</p>
-                        <Link href="https://cal.com/ash-nouruzi/discovery" target="_blank" className="w-full sm:w-auto">
+                        <Link href="https://cal.com/must-be-ash/15min?user=must-be-ash" target="_blank" className="w-full sm:w-auto">
                           <InteractiveHoverButton
                             className="w-full border-[#ffb520] bg-[#ffb520] py-4 sm:py-6 text-base sm:text-lg font-semibold text-black hover:text-[#ffb520]"
                           >
