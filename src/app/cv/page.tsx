@@ -315,7 +315,7 @@ export default function CVPage() {
               <p className="mt-2">Multiple retweets from Jesse, CBD, and the Base team.</p>
             </div>
             <div>
-              <h3 className="text-xl font-semibold mb-2">Notable content contributions:</h3>
+              <h3 className="text-xl font-semibold mb-2">Example of web apps as content:</h3>
               <ul className="list-disc list-inside space-y-1 pl-4">
                 <li><a href="https://x.com/must_be_ash/status/1887888874174906649?s=46" target="_blank" rel="noreferrer" className="text-[#4134a9] hover:underline">BasedList 1</a></li>
                 <li><a href="https://x.com/must_be_ash/status/1899224091837804550?s=46" target="_blank" rel="noreferrer" className="text-[#4134a9] hover:underline">BasedList 2</a></li>
